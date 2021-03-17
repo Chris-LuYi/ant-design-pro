@@ -6,6 +6,8 @@
   "scripts": {
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "umi build",
+    "build": "umi build ",
+
     "deploy": "npm run site && npm run gh-pages",
     "dev": "npm run start:dev",
     "docker-hub:build": "docker build  -f Dockerfile.hub -t  ant-design-pro ./",
@@ -29,17 +31,20 @@
     "precommit": "lint-staged",
     "prettier": "prettier -c --write \"src/**/*\"",
     "site": "npm run fetch:blocks && npm run build",
-    "start": "cross-env UMI_ENV=dev umi dev",
-    "start:dev": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev umi dev",
-    "start:no-mock": "cross-env MOCK=none UMI_ENV=dev umi dev",
-    "start:no-ui": "cross-env UMI_UI=none UMI_ENV=dev umi dev",
-    "start:pre": "cross-env REACT_APP_ENV=pre UMI_ENV=dev umi dev",
-    "start:test": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=dev umi dev",
+    "start": "npm run start:st",
+    "start:st": "cross-env REACT_APP_ENV=st UMI_ENV=st umi dev",
+    "start:no-mock": "cross-env MOCK=none UMI_ENV=st umi dev",
+    "start:no-ui": "cross-env UMI_UI=none UMI_ENV=st umi dev",
+    "start:pre": "cross-env REACT_APP_ENV=pre UMI_ENV=st umi dev",
+    "start:test": "cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=st umi dev",
+    "start:uat": "cross-env REACT_APP_ENV=uat UMI_ENV=uat umi dev",
+    "start:prod": "cross-env REACT_APP_ENV=prod UMI_ENV=prod umi dev",
     "pretest": "node ./tests/beforeTest",
     "test": "umi test",
     "test:all": "node ./tests/run-tests.js",
     "test:component": "umi test ./src/components",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "windows-copy-web-config": "copy .\\config\\iis\\web.config .\\dist\\web.config"
   },
   "lint-staged": {
     "**/*.less": "stylelint --syntax less",
