@@ -138,8 +138,22 @@ const errorHandler = (error: ResponseError) => {
   }
   throw error;
 };
-
 // https://umijs.org/zh-CN/plugins/plugin-request
 export const request: RequestConfig = {
   errorHandler,
+  middlewares: [
+    async function middlewareA(ctx, next) {
+      // console.log(ctx, next);
+      ctx.req.url = GLOBAL_CONFIG.url + ctx.req.url;
+      // console.log('A before');
+      await next();
+      // console.log('A after');
+    },
+    // async function middlewareB(ctx, next) {
+    //   console.log(ctx, next);
+    //   console.log('B before');
+    //   await next();
+    //   console.log('B after');
+    // },
+  ],
 };
