@@ -6,9 +6,9 @@
   "scripts": {
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "umi build",
-    "build": "umi build ",
-
-    "deploy": "npm run site && npm run gh-pages",
+    "build:st-pre": "cross-env REACT_APP_ENV=st UMI_ENV=st umi build",
+    "build:st": "npm run build:st-pre && npm run windows-copy-web-config",
+    "deploy": "npm run build:st && npm run gh-pages",
     "dev": "npm run start:dev",
     "docker-hub:build": "docker build  -f Dockerfile.hub -t  ant-design-pro ./",
     "docker-prod:build": "docker-compose -f ./docker/docker-compose.yml build",
