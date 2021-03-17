@@ -16,7 +16,7 @@ export default defineConfig({
   // Custom defined system configuration
   define: {
     GLOBAL_CONFIG: {
-      url: 'proxy',
+      url: 'http://localhost:8115/proxy',
     },
   },
 });
