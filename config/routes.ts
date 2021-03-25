@@ -1,4 +1,4 @@
-﻿export default [
+export default [
   {
     path: '/user',
     layout: false,
@@ -46,6 +46,18 @@
     path: '/',
     redirect: '/welcome',
   },
+  {
+    name: 'blank-page',
+    icon: 'smile',
+    path: '/emptypagetwo',
+    component: './EmptyPageTwo',
+  },
+  // {
+  //   name: 'blank-page',
+  //   icon: 'smile',
+  //   path: '/emptypage',
+  //   component: './EmptyPage',
+  // },
   {
     component: './404',
   },

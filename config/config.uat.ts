@@ -17,6 +17,7 @@ export default defineConfig({
   define: {
     GLOBAL_CONFIG: {
       url: 'http://localhost:9000',
+      testField: 'abc',
     },
   },
 });

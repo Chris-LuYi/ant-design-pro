@@ -17,6 +17,7 @@ export default defineConfig({
   define: {
     GLOBAL_CONFIG: {
       url: 'proxy',
+      testField: '123',
     },
   },
 });

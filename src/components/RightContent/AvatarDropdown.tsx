@@ -6,6 +6,7 @@ import { stringify } from 'querystring';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
 import { outLogin } from '@/services/ant-design-pro/api';
+import { GETGetListing } from '@/services/banchoon/CTPort';
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -15,6 +16,7 @@ export type GlobalHeaderRightProps = {
  * 退出登录，并且将当前的 url 保存
  */
 const loginOut = async () => {
+  await GETGetListing({});
   await outLogin();
   const { query = {}, pathname } = history.location;
   const { redirect } = query;
