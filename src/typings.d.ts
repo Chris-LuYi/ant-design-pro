@@ -40,5 +40,6 @@ declare const REACT_APP_ENV: 'test' | 'dev' | 'pre' | false;
 
 type GlbalConfig = {
   url: string;
+  headerHeight: number;
 };
 declare const GLOBAL_CONFIG: GlbalConfig;

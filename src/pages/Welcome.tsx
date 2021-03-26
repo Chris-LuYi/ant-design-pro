@@ -3,6 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Alert, Typography } from 'antd';
 import { useIntl, FormattedMessage } from 'umi';
 import styles from './Welcome.less';
+import { useListing } from '@/components/hooks';
 
 const CodePreview: React.FC = ({ children }) => (
   <pre className={styles.pre}>
@@ -14,6 +15,8 @@ const CodePreview: React.FC = ({ children }) => (
 
 export default (): React.ReactNode => {
   const intl = useIntl();
+  const { list, c } = useListing();
+  console.log(list, c);
   return (
     <PageContainer>
       <Card>

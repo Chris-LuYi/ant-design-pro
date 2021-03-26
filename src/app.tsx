@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
 import { notification } from 'antd';
@@ -57,6 +57,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     waterMarkProps: {
       content: initialState?.currentUser?.name,
     },
+    // navTheme: 'dark',
+    // layout: 'top',
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;

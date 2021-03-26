@@ -1,4 +1,4 @@
-export default [
+﻿export default [
   {
     path: '/user',
     layout: false,
@@ -52,7 +52,42 @@ export default [
     path: '/emptypagetwo',
     component: './EmptyPageTwo',
   },
-  // {
+  {
+    path: '/product',
+    name: '产品管理',
+    routes: [
+      { path: '/product', redirect: 'product/list' },
+      {
+        path: '/product/list',
+        name: '产品列表',
+      },
+      {
+        path: '/product/new',
+        name: '新建产品',
+      },
+      {
+        path: '/product/:id',
+        hideInMenu: true,
+        name: '产品详情',
+      },
+      {
+        path: '/product/update/:id',
+        hideInMenu: true,
+        name: '修改产品',
+      },
+      {
+        path: '/1/b',
+        name: '修改产品2',
+        parentKeys: ['/product'],
+      },
+    ],
+  },
+  {
+    name: '空白页面',
+    icon: 'smile',
+    path: '/emptypage',
+    component: './EmptyPageThree',
+  }, // {
   //   name: 'blank-page',
   //   icon: 'smile',
   //   path: '/emptypage',

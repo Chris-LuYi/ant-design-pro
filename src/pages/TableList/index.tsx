@@ -11,6 +11,7 @@ import ProDescriptions from '@ant-design/pro-descriptions';
 import type { FormValueType } from './components/UpdateForm';
 import UpdateForm from './components/UpdateForm';
 import { rule, addRule, updateRule, removeRule } from '@/services/ant-design-pro/api';
+import { useListing } from '@/components/hooks';
 
 /**
  * 添加节点
@@ -91,6 +92,9 @@ const TableList: React.FC = () => {
 
   /** 国际化配置 */
   const intl = useIntl();
+
+  const { list, c } = useListing();
+  console.log(list, c);
 
   const columns: ProColumns<API.RuleListItem>[] = [
     {
