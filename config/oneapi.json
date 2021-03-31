@@ -1,38 +1,34 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Cargo Clique",
+    "title": "Smart WMS",
     "version": "v1"
   },
   "paths": {
     "/api/CodeTable/{ctname}": {
       "get": {
         "tags": ["CodeTable"],
-        "operationId": "GET_GetByCriteria",
         "parameters": [
           {
             "name": "ctname",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             }
           },
           {
             "name": "Code",
             "in": "query",
             "schema": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             }
           },
           {
             "name": "IsActive",
             "in": "query",
             "schema": {
-              "type": "boolean",
-              "nullable": true
+              "type": "boolean"
             }
           },
           {
@@ -41,17 +37,8 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/SortingDto"
-              },
-              "nullable": true
-            }
-          },
-          {
-            "name": "Total",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+                "$ref": "#/components/schemas/Sorting"
+              }
             }
           },
           {
@@ -69,6 +56,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "Total",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
         ],
         "responses": {
@@ -77,17 +72,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/KeyValuePairDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/KeyValuePairDtoIAsyncEnumerablePaginationResultApiResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/KeyValuePairDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/KeyValuePairDtoIAsyncEnumerablePaginationResultApiResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/KeyValuePairDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/KeyValuePairDtoIAsyncEnumerablePaginationResultApiResponse"
                 }
               }
             }
@@ -95,414 +90,59 @@
         }
       }
     },
-    "/api/CodeTable/CTPort": {
-      "get": {
-        "tags": ["CodeTable"],
-        "operationId": "GET_GetCTPort",
-        "parameters": [
-          {
-            "name": "CountryOrPort",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "CountryCode",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "CountryDisplayValue",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "PortCode",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "PortDisplayValue",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "IsActive",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "nullable": true
-            }
-          },
-          {
-            "name": "Sorting",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SortingDto"
-              },
-              "nullable": true
-            }
-          },
-          {
-            "name": "Total",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Current",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/KeyValuePairDtoSearchResultApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KeyValuePairDtoSearchResultApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KeyValuePairDtoSearchResultApiResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/CTContainerOperator": {
-      "get": {
-        "tags": ["CTContainerOperator"],
-        "operationId": "GET_GetListing",
-        "parameters": [
-          {
-            "name": "Code",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "IsActive",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "nullable": true
-            }
-          },
-          {
-            "name": "Sorting",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SortingDto"
-              },
-              "nullable": true
-            }
-          },
-          {
-            "name": "Total",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Current",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTContainerOperatorDtoSearchResultApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTContainerOperatorDtoSearchResultApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTContainerOperatorDtoSearchResultApiResponse"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/api/DeliveryNotesReport": {
       "post": {
-        "tags": ["CTContainerOperator"],
-        "operationId": "POST_Create",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTContainerOperatorDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTContainerOperatorDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTContainerOperatorDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTContainerOperatorDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTContainerOperatorDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTContainerOperatorDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTContainerOperatorDtoApiResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": ["CTContainerOperator"],
-        "operationId": "PUT_Update",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTContainerOperatorDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTContainerOperatorDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTContainerOperatorDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTContainerOperatorDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTContainerOperatorDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTContainerOperatorDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTContainerOperatorDtoApiResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/CTLabelPrinter": {
-      "get": {
-        "tags": ["CTLabelPrinter"],
-        "operationId": "GET_GetListing",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTLabelPrinterDtoIEnumerableApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTLabelPrinterDtoIEnumerableApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTLabelPrinterDtoIEnumerableApiResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/CTPort": {
-      "get": {
-        "tags": ["CTPort"],
-        "operationId": "GET_GetListing",
+        "tags": ["DeliveryNotesReport"],
         "parameters": [
           {
-            "name": "CountryOrPort",
+            "name": "reportFormat",
             "in": "query",
             "schema": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             }
-          },
-          {
-            "name": "CountryCode",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryNotesReportParams"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryNotesReportParams"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryNotesReportParams"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeliveryNotesReportParams"
+              }
             }
-          },
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/File/{fileCategory}": {
+      "post": {
+        "tags": ["File"],
+        "parameters": [
           {
-            "name": "CountryDisplayValue",
-            "in": "query",
+            "name": "fileCategory",
+            "in": "path",
+            "required": true,
             "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "PortCode",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "PortDisplayValue",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "IsActive",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "nullable": true
-            }
-          },
-          {
-            "name": "Sorting",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SortingDto"
-              },
-              "nullable": true
-            }
-          },
-          {
-            "name": "Total",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Current",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -512,117 +152,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CTPortDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/FileUploadResultDtoListApiResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CTPortDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/FileUploadResultDtoListApiResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CTPortDtoSearchResultApiResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": ["CTPort"],
-        "operationId": "POST_CreatePort",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPortDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPortDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPortDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPortDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPortDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPortDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPortDtoApiResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": ["CTPort"],
-        "operationId": "PUT_UpdatePort",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPortDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPortDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPortDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPortDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPortDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPortDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPortDtoApiResponse"
+                  "$ref": "#/components/schemas/FileUploadResultDtoListApiResponse"
                 }
               }
             }
@@ -630,290 +170,39 @@
         }
       }
     },
-    "/api/CTPublicHoliday": {
+    "/api/File/{id}": {
       "get": {
-        "tags": ["CTPublicHoliday"],
-        "operationId": "GET_GetListing",
+        "tags": ["File"],
         "parameters": [
           {
-            "name": "Name",
-            "in": "query",
+            "name": "id",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "StartDate",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "nullable": true
-            }
-          },
-          {
-            "name": "EndDate",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "nullable": true
-            }
-          },
-          {
-            "name": "IsActive",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "nullable": true
-            }
-          },
-          {
-            "name": "Sorting",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SortingDto"
-              },
-              "nullable": true
-            }
-          },
-          {
-            "name": "Total",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Current",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+              "format": "uuid"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPublicHolidayDtoSearchResultApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPublicHolidayDtoSearchResultApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPublicHolidayDtoSearchResultApiResponse"
-                }
-              }
-            }
+            "description": "Success"
           }
         }
       },
-      "post": {
-        "tags": ["CTPublicHoliday"],
-        "operationId": "POST_CreateHoliday",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPublicHolidayDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPublicHolidayDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPublicHolidayDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPublicHolidayDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPublicHolidayDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPublicHolidayDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPublicHolidayDtoApiResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": ["CTPublicHoliday"],
-        "operationId": "PUT_UpdateHoliday",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPublicHolidayDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPublicHolidayDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPublicHolidayDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CTPublicHolidayDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPublicHolidayDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPublicHolidayDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CTPublicHolidayDtoApiResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/CTUNNo": {
-      "get": {
-        "tags": ["CTUNNo"],
-        "operationId": "GET_GetListing",
+      "delete": {
+        "tags": ["File"],
         "parameters": [
           {
-            "name": "Code",
-            "in": "query",
+            "name": "id",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "IsActive",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "nullable": true
-            }
-          },
-          {
-            "name": "Sorting",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SortingDto"
-              },
-              "nullable": true
-            }
-          },
-          {
-            "name": "Total",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Current",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+              "format": "uuid"
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/KeyValuePairDtoSearchResultApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KeyValuePairDtoSearchResultApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KeyValuePairDtoSearchResultApiResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Download/CargoCliqueReportTool": {
-      "post": {
-        "tags": ["Download"],
-        "operationId": "POST_GetCargoCliqueReportTool",
         "responses": {
           "200": {
             "description": "Success"
@@ -924,22 +213,19 @@
     "/api/Role": {
       "get": {
         "tags": ["Role"],
-        "operationId": "GET_GetByCriteria",
         "parameters": [
           {
             "name": "Name",
             "in": "query",
             "schema": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             }
           },
           {
             "name": "IsActive",
             "in": "query",
             "schema": {
-              "type": "boolean",
-              "nullable": true
+              "type": "boolean"
             }
           },
           {
@@ -948,17 +234,8 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/SortingDto"
-              },
-              "nullable": true
-            }
-          },
-          {
-            "name": "Total",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+                "$ref": "#/components/schemas/Sorting"
+              }
             }
           },
           {
@@ -976,71 +253,6 @@
               "type": "integer",
               "format": "int32"
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoleListDtoSearchResultApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoleListDtoSearchResultApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoleListDtoSearchResultApiResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Tenant": {
-      "get": {
-        "tags": ["Tenant"],
-        "operationId": "GET_GetByCriteria",
-        "parameters": [
-          {
-            "name": "TenantName",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "TenantPSAAccountNumber",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "IsActive",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "nullable": true
-            }
-          },
-          {
-            "name": "Sorting",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SortingDto"
-              },
-              "nullable": true
-            }
           },
           {
             "name": "Total",
@@ -1049,22 +261,6 @@
               "type": "integer",
               "format": "int32"
             }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Current",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
           }
         ],
         "responses": {
@@ -1073,117 +269,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/TenantDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/RoleListDtoIAsyncEnumerablePaginationResultApiResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TenantDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/RoleListDtoIAsyncEnumerablePaginationResultApiResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TenantDtoSearchResultApiResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": ["Tenant"],
-        "operationId": "POST_CreateTenant",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/TenantDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TenantDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TenantDtoApiResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": ["Tenant"],
-        "operationId": "PUT_UpdateTenant",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TenantDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/TenantDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TenantDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TenantDtoApiResponse"
+                  "$ref": "#/components/schemas/RoleListDtoIAsyncEnumerablePaginationResultApiResponse"
                 }
               }
             }
@@ -1191,18 +287,15 @@
         }
       }
     },
-    "/api/Tenant/{id}": {
+    "/api/SystemSetting": {
       "get": {
-        "tags": ["Tenant"],
-        "operationId": "GET_GetTenant",
+        "tags": ["SystemSetting"],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
+            "name": "key",
+            "in": "query",
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             }
           }
         ],
@@ -1212,17 +305,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/TenantDtoApiResponse"
+                  "$ref": "#/components/schemas/SystemSettingDtoApiResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TenantDtoApiResponse"
+                  "$ref": "#/components/schemas/SystemSettingDtoApiResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TenantDtoApiResponse"
+                  "$ref": "#/components/schemas/SystemSettingDtoApiResponse"
                 }
               }
             }
@@ -1230,520 +323,29 @@
         }
       }
     },
-    "/api/Tenant/Hauliers": {
+    "/api/SystemSetting/All": {
       "get": {
-        "tags": ["Tenant"],
-        "operationId": "GET_GetHaulierList",
+        "tags": ["SystemSetting"],
         "responses": {
           "200": {
             "description": "Success",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/TenantHaulierDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/SystemSettingDtoIAsyncEnumerableApiResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TenantHaulierDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/SystemSettingDtoIAsyncEnumerableApiResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TenantHaulierDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/SystemSettingDtoIAsyncEnumerableApiResponse"
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/api/Transporter": {
-      "get": {
-        "tags": ["Transporter"],
-        "operationId": "GET_GetByCriteria",
-        "parameters": [
-          {
-            "name": "Name",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "CompanyName",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "PSAPassNumber",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "ContactNumber",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "IsActive",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "nullable": true
-            }
-          },
-          {
-            "name": "Sorting",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SortingDto"
-              },
-              "nullable": true
-            }
-          },
-          {
-            "name": "Total",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Current",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoSearchResultApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoSearchResultApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoSearchResultApiResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": ["Transporter"],
-        "operationId": "POST_CreateTransporter",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TransporterDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TransporterDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TransporterDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TransporterDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoApiResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": ["Transporter"],
-        "operationId": "PUT_UpdateTransporter",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TransporterDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TransporterDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TransporterDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/TransporterDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoApiResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Transporter/{id}": {
-      "get": {
-        "tags": ["Transporter"],
-        "operationId": "GET_GetTransporter",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TransporterDtoApiResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/Transporter/Validate/{transporterPSAPassNumber}": {
-      "post": {
-        "tags": ["Transporter"],
-        "operationId": "POST_ValidateTransporterPSAPassNumber",
-        "parameters": [
-          {
-            "name": "transporterPSAPassNumber",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/BooleanApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BooleanApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BooleanApiResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/UNNoIMOClass": {
-      "get": {
-        "tags": ["UNNoIMOClass"],
-        "operationId": "GET_GetListing",
-        "parameters": [
-          {
-            "name": "Code",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "IMOClassIds",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "format": "uuid"
-              },
-              "nullable": true
-            }
-          },
-          {
-            "name": "Sorting",
-            "in": "query",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/SortingDto"
-              },
-              "nullable": true
-            }
-          },
-          {
-            "name": "Total",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "Current",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/UNNoIMOClassDtoSearchResultApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UNNoIMOClassDtoSearchResultApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UNNoIMOClassDtoSearchResultApiResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": ["UNNoIMOClass"],
-        "operationId": "POST_Create",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UNNoIMOClassDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UNNoIMOClassDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UNNoIMOClassDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UNNoIMOClassDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/UNNoIMOClassDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UNNoIMOClassDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UNNoIMOClassDtoApiResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": ["UNNoIMOClass"],
-        "operationId": "PUT_Update",
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UNNoIMOClassDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UNNoIMOClassDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UNNoIMOClassDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UNNoIMOClassDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/UNNoIMOClassDtoApiResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UNNoIMOClassDtoApiResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UNNoIMOClassDtoApiResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/UNNoIMOClass/Import": {
-      "post": {
-        "tags": ["UNNoIMOClass"],
-        "operationId": "POST_Import",
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/UNNoIMOClass/Export": {
-      "get": {
-        "tags": ["UNNoIMOClass"],
-        "operationId": "GET_Export",
-        "responses": {
-          "200": {
-            "description": "Success"
           }
         }
       }
@@ -1751,7 +353,6 @@
     "/api/User/current": {
       "get": {
         "tags": ["User"],
-        "operationId": "GET_Current",
         "responses": {
           "200": {
             "description": "Success",
@@ -1777,7 +378,6 @@
       },
       "put": {
         "tags": ["User"],
-        "operationId": "PUT_UpdateCurrent",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -1829,7 +429,6 @@
     "/api/User/ChangePassword": {
       "put": {
         "tags": ["User"],
-        "operationId": "PUT_ChangePassword",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -1864,7 +463,6 @@
     "/api/User/ForgetPassword": {
       "put": {
         "tags": ["User"],
-        "operationId": "PUT_ForgetPassword",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -1899,7 +497,6 @@
     "/api/User/ResetPassword": {
       "put": {
         "tags": ["User"],
-        "operationId": "PUT_ResetPassword",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -1934,55 +531,48 @@
     "/api/User": {
       "get": {
         "tags": ["User"],
-        "operationId": "GET_GetByCriteria",
         "parameters": [
           {
             "name": "TenantId",
             "in": "query",
             "schema": {
               "type": "string",
-              "format": "uuid",
-              "nullable": true
+              "format": "uuid"
             }
           },
           {
             "name": "Name",
             "in": "query",
             "schema": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             }
           },
           {
             "name": "ContactNumber",
             "in": "query",
             "schema": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             }
           },
           {
             "name": "PSAAccountNumber",
             "in": "query",
             "schema": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             }
           },
           {
             "name": "IsActive",
             "in": "query",
             "schema": {
-              "type": "boolean",
-              "nullable": true
+              "type": "boolean"
             }
           },
           {
             "name": "IsPSAUser",
             "in": "query",
             "schema": {
-              "type": "boolean",
-              "nullable": true
+              "type": "boolean"
             }
           },
           {
@@ -1991,17 +581,8 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/SortingDto"
-              },
-              "nullable": true
-            }
-          },
-          {
-            "name": "Total",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+                "$ref": "#/components/schemas/Sorting"
+              }
             }
           },
           {
@@ -2019,6 +600,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "Total",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
         ],
         "responses": {
@@ -2027,17 +616,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserListDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/UserListDtoIAsyncEnumerablePaginationResultApiResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserListDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/UserListDtoIAsyncEnumerablePaginationResultApiResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserListDtoSearchResultApiResponse"
+                  "$ref": "#/components/schemas/UserListDtoIAsyncEnumerablePaginationResultApiResponse"
                 }
               }
             }
@@ -2046,7 +635,6 @@
       },
       "post": {
         "tags": ["User"],
-        "operationId": "POST_CreateUser",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -2096,7 +684,6 @@
       },
       "put": {
         "tags": ["User"],
-        "operationId": "PUT_UpdateUser",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -2148,7 +735,6 @@
     "/api/User/{id}": {
       "get": {
         "tags": ["User"],
-        "operationId": "GET_GetUser",
         "parameters": [
           {
             "name": "id",
@@ -2187,1197 +773,24 @@
   },
   "components": {
     "schemas": {
-      "SortingDto": {
-        "type": "object",
-        "properties": {
-          "sortBy": {
-            "type": "string",
-            "nullable": true
-          },
-          "order": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "KeyValuePairDto": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "KeyValuePairDtoSearchResult": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/KeyValuePairDto"
-            },
-            "nullable": true
-          },
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "current": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
       "ApiStatusCode": {
         "enum": [0, 1, 2, 3, 4],
         "type": "integer",
         "format": "int32"
       },
-      "KeyValuePairDtoSearchResultApiResponse": {
+      "ChangePasswordRequestDto": {
         "type": "object",
         "properties": {
-          "data": {
-            "$ref": "#/components/schemas/KeyValuePairDtoSearchResult"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTContainerOperatorDto": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "displayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "sortOrder": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTContainerOperatorDtoSearchResult": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CTContainerOperatorDto"
-            },
-            "nullable": true
-          },
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "current": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTContainerOperatorDtoSearchResultApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/CTContainerOperatorDtoSearchResult"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTContainerOperatorDtoApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/CTContainerOperatorDto"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTLabelPrinterDto": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "displayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "printerIPAddress": {
-            "type": "string",
-            "nullable": true
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "sortOrder": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTLabelPrinterDtoIEnumerableApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CTLabelPrinterDto"
-            },
-            "nullable": true
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTPortDto": {
-        "type": "object",
-        "properties": {
-          "countryCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "countryDisplayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "portCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "portDisplayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTPortDtoSearchResult": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CTPortDto"
-            },
-            "nullable": true
-          },
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "current": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTPortDtoSearchResultApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/CTPortDtoSearchResult"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTPortDtoApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/CTPortDto"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTPublicHolidayDto": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string",
-            "nullable": true
-          },
-          "displayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "dateFrom": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "dateTo": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTPublicHolidayDtoSearchResult": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CTPublicHolidayDto"
-            },
-            "nullable": true
-          },
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "current": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTPublicHolidayDtoSearchResultApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/CTPublicHolidayDtoSearchResult"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTPublicHolidayDtoApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/CTPublicHolidayDto"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RoleListDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RoleListDtoSearchResult": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RoleListDto"
-            },
-            "nullable": true
-          },
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "current": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "RoleListDtoSearchResultApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/RoleListDtoSearchResult"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TenantHaulierDto": {
-        "type": "object",
-        "properties": {
-          "tenantId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "haulierName": {
-            "type": "string",
-            "nullable": true
-          },
-          "haulierContactNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TenantDto": {
-        "type": "object",
-        "properties": {
-          "tenantPSAAccountNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenantName": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenantCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenantContactPerson": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenantContactNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenantEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenantFaxNumber": {
+          "currentPassword": {
             "type": "string",
             "nullable": true
           },
-          "isActive": {
-            "type": "boolean"
-          },
-          "tenantHaulier": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TenantHaulierDto"
-            },
-            "nullable": true
-          },
-          "roleIds": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TenantDtoSearchResult": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TenantDto"
-            },
-            "nullable": true
-          },
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "current": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "TenantDtoSearchResultApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/TenantDtoSearchResult"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TenantDtoApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/TenantDto"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TenantHaulierDtoSearchResult": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TenantHaulierDto"
-            },
-            "nullable": true
-          },
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "current": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "TenantHaulierDtoSearchResultApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/TenantHaulierDtoSearchResult"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TransporterDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "companyName": {
-            "type": "string",
-            "nullable": true
-          },
-          "psaPassNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "contactNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "rfidNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TransporterDtoSearchResult": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransporterDto"
-            },
-            "nullable": true
-          },
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "current": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "TransporterDtoSearchResultApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/TransporterDtoSearchResult"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "TransporterDtoApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/TransporterDto"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "BooleanApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "boolean"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "CTSubRiskDto": {
-        "type": "object",
-        "properties": {
-          "unNoIMOClassId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "imoClassId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "riskLevel": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "sortOrder": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UNNoIMOClassDto": {
-        "type": "object",
-        "properties": {
-          "unNoId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "imoClassId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "properShippingName": {
-            "type": "string",
-            "nullable": true
-          },
-          "technicalName": {
-            "type": "string",
-            "nullable": true
-          },
-          "fpFrom": {
-            "type": "string",
-            "nullable": true
-          },
-          "fpTo": {
-            "type": "string",
-            "nullable": true
-          },
-          "packingGroupId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "psaGroupId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "handlingTypeId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "subRisk1IMOClassId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "subRisk2IMOClassId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
-          "unNoCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "unNoDisplayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "imoClassDisplayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "subRisk1DisplayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "subRisk2DisplayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "packingGroupDisplayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "psaGroupDisplayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "handlingTypeDisplayValue": {
-            "type": "string",
-            "nullable": true
-          },
-          "isDirectHandling": {
-            "type": "boolean"
-          },
-          "isSpecialDG": {
-            "type": "boolean"
-          },
-          "subRisk": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CTSubRiskDto"
-            },
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UNNoIMOClassDtoSearchResult": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UNNoIMOClassDto"
-            },
-            "nullable": true
-          },
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "current": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "UNNoIMOClassDtoSearchResultApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/UNNoIMOClassDtoSearchResult"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UNNoIMOClassDtoApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/UNNoIMOClassDto"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RoleDto": {
-        "type": "object",
-        "properties": {
-          "name": {
+          "newPassword": {
             "type": "string",
             "nullable": true
-          },
-          "normalizedName": {
-            "type": "string",
-            "nullable": true
-          },
-          "concurrencyStamp": {
-            "type": "string",
-            "nullable": true
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
           },
-          "recordVersion": {
+          "confirmPassword": {
             "type": "string",
-            "format": "byte",
             "nullable": true
           }
         },
@@ -3406,19 +819,6 @@
             "type": "string",
             "nullable": true
           },
-          "psaAccountNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenantId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "managedTenantId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
           "isActive": {
             "type": "boolean"
           },
@@ -3437,59 +837,9 @@
         },
         "additionalProperties": false
       },
-      "UserInfo": {
-        "type": "object",
-        "properties": {
-          "user": {
-            "$ref": "#/components/schemas/CurrentUserDto"
-          },
-          "accessRights": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "tenant": {
-            "$ref": "#/components/schemas/TenantDto"
-          },
-          "isTenant": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserInfoApiResponse": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "$ref": "#/components/schemas/UserInfo"
-          },
-          "requestId": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          },
-          "status": {
-            "$ref": "#/components/schemas/ApiStatusCode"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "detailsErrorMessage": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "CurrentUserDtoApiResponse": {
         "type": "object",
         "properties": {
-          "data": {
-            "$ref": "#/components/schemas/CurrentUserDto"
-          },
           "requestId": {
             "type": "string",
             "nullable": true,
@@ -3505,23 +855,73 @@
           "detailsErrorMessage": {
             "type": "string",
             "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/CurrentUserDto"
           }
         },
         "additionalProperties": false
       },
-      "ChangePasswordRequestDto": {
+      "DeliveryNotesReportParams": {
         "type": "object",
         "properties": {
-          "currentPassword": {
+          "cargoId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FileUploadResultDto": {
+        "type": "object",
+        "properties": {
+          "fileName": {
             "type": "string",
             "nullable": true
           },
-          "newPassword": {
+          "fileExtension": {
             "type": "string",
             "nullable": true
           },
-          "confirmPassword": {
+          "fileSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
             "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FileUploadResultDtoListApiResponse": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiStatusCode"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "detailsErrorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileUploadResultDto"
+            },
             "nullable": true
           }
         },
@@ -3533,6 +933,88 @@
           "email": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "KeyValuePairDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "recordVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "KeyValuePairDtoIAsyncEnumerablePaginationResult": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KeyValuePairDto"
+            },
+            "nullable": true
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/Pagination"
+          }
+        },
+        "additionalProperties": false
+      },
+      "KeyValuePairDtoIAsyncEnumerablePaginationResultApiResponse": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiStatusCode"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "detailsErrorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/KeyValuePairDtoIAsyncEnumerablePaginationResult"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Pagination": {
+        "type": "object",
+        "properties": {
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "current": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -3555,82 +1037,81 @@
         },
         "additionalProperties": false
       },
-      "UserListDto": {
+      "RoleDto": {
         "type": "object",
         "properties": {
-          "userName": {
+          "id": {
             "type": "string",
+            "format": "uuid"
+          },
+          "recordVersion": {
+            "type": "string",
+            "format": "byte",
             "nullable": true
           },
           "name": {
             "type": "string",
             "nullable": true
           },
-          "email": {
+          "normalizedName": {
             "type": "string",
             "nullable": true
           },
-          "contactNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "role": {
-            "type": "string",
-            "nullable": true
-          },
-          "tenantName": {
+          "concurrencyStamp": {
             "type": "string",
             "nullable": true
           },
           "isActive": {
             "type": "boolean"
           },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoleListDto": {
+        "type": "object",
+        "properties": {
           "id": {
             "type": "string",
             "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
           },
           "recordVersion": {
             "type": "string",
             "format": "byte",
             "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
       },
-      "UserListDtoSearchResult": {
+      "RoleListDtoIAsyncEnumerablePaginationResult": {
         "type": "object",
         "properties": {
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/UserListDto"
+              "$ref": "#/components/schemas/RoleListDto"
             },
             "nullable": true
           },
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "current": {
-            "type": "integer",
-            "format": "int32"
+          "pagination": {
+            "$ref": "#/components/schemas/Pagination"
           }
         },
         "additionalProperties": false
       },
-      "UserListDtoSearchResultApiResponse": {
+      "RoleListDtoIAsyncEnumerablePaginationResultApiResponse": {
         "type": "object",
         "properties": {
-          "data": {
-            "$ref": "#/components/schemas/UserListDtoSearchResult"
-          },
           "requestId": {
             "type": "string",
             "nullable": true,
@@ -3646,6 +1127,104 @@
           "detailsErrorMessage": {
             "type": "string",
             "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/RoleListDtoIAsyncEnumerablePaginationResult"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Sorting": {
+        "type": "object",
+        "properties": {
+          "sortBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SystemSettingDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "recordVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "settingKey": {
+            "type": "string",
+            "nullable": true
+          },
+          "settingValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SystemSettingDtoApiResponse": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiStatusCode"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "detailsErrorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/SystemSettingDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SystemSettingDtoIAsyncEnumerableApiResponse": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiStatusCode"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "detailsErrorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SystemSettingDto"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3653,6 +1232,15 @@
       "UserDto": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "recordVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
           "userName": {
             "type": "string",
             "nullable": true
@@ -3682,29 +1270,12 @@
             "type": "string",
             "format": "uuid"
           },
-          "managedTenantId": {
-            "type": "string",
-            "format": "uuid",
-            "nullable": true
-          },
           "isActive": {
             "type": "boolean"
           },
           "roleId": {
             "type": "string",
             "format": "uuid",
-            "nullable": true
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "recordVersion": {
-            "type": "string",
-            "format": "byte",
             "nullable": true
           }
         },
@@ -3713,9 +1284,6 @@
       "UserDtoApiResponse": {
         "type": "object",
         "properties": {
-          "data": {
-            "$ref": "#/components/schemas/UserDto"
-          },
           "requestId": {
             "type": "string",
             "nullable": true,
@@ -3731,6 +1299,129 @@
           "detailsErrorMessage": {
             "type": "string",
             "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserInfo": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/CurrentUserDto"
+          },
+          "accessRights": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserInfoApiResponse": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiStatusCode"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "detailsErrorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserListDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "recordVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserListDtoIAsyncEnumerablePaginationResult": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserListDto"
+            },
+            "nullable": true
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/Pagination"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserListDtoIAsyncEnumerablePaginationResultApiResponse": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ApiStatusCode"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "detailsErrorMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserListDtoIAsyncEnumerablePaginationResult"
           }
         },
         "additionalProperties": false
