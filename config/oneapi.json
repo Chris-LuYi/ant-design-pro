@@ -8,6 +8,7 @@
     "/api/CodeTable/{ctname}": {
       "get": {
         "tags": ["CodeTable"],
+        "operationId": "GET_GetByCriteria",
         "parameters": [
           {
             "name": "ctname",
@@ -93,6 +94,7 @@
     "/api/DeliveryNotesReport": {
       "post": {
         "tags": ["DeliveryNotesReport"],
+        "operationId": "POST_GetReport",
         "parameters": [
           {
             "name": "reportFormat",
@@ -136,6 +138,7 @@
     "/api/File/{fileCategory}": {
       "post": {
         "tags": ["File"],
+        "operationId": "POST_Upload",
         "parameters": [
           {
             "name": "fileCategory",
@@ -173,6 +176,7 @@
     "/api/File/{id}": {
       "get": {
         "tags": ["File"],
+        "operationId": "GET_Download",
         "parameters": [
           {
             "name": "id",
@@ -192,6 +196,7 @@
       },
       "delete": {
         "tags": ["File"],
+        "operationId": "DELETE_Delete",
         "parameters": [
           {
             "name": "id",
@@ -213,6 +218,7 @@
     "/api/Role": {
       "get": {
         "tags": ["Role"],
+        "operationId": "GET_GetByCriteria",
         "parameters": [
           {
             "name": "Name",
@@ -290,6 +296,7 @@
     "/api/SystemSetting": {
       "get": {
         "tags": ["SystemSetting"],
+        "operationId": "GET_GetSystemSetting",
         "parameters": [
           {
             "name": "key",
@@ -326,6 +333,7 @@
     "/api/SystemSetting/All": {
       "get": {
         "tags": ["SystemSetting"],
+        "operationId": "GET_GetAllSystemSetting",
         "responses": {
           "200": {
             "description": "Success",
@@ -353,6 +361,7 @@
     "/api/User/current": {
       "get": {
         "tags": ["User"],
+        "operationId": "GET_Current",
         "responses": {
           "200": {
             "description": "Success",
@@ -378,6 +387,7 @@
       },
       "put": {
         "tags": ["User"],
+        "operationId": "PUT_UpdateCurrent",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -429,6 +439,7 @@
     "/api/User/ChangePassword": {
       "put": {
         "tags": ["User"],
+        "operationId": "PUT_ChangePassword",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -463,6 +474,7 @@
     "/api/User/ForgetPassword": {
       "put": {
         "tags": ["User"],
+        "operationId": "PUT_ForgetPassword",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -497,6 +509,7 @@
     "/api/User/ResetPassword": {
       "put": {
         "tags": ["User"],
+        "operationId": "PUT_ResetPassword",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -531,6 +544,7 @@
     "/api/User": {
       "get": {
         "tags": ["User"],
+        "operationId": "GET_GetByCriteria",
         "parameters": [
           {
             "name": "TenantId",
@@ -635,6 +649,7 @@
       },
       "post": {
         "tags": ["User"],
+        "operationId": "POST_CreateUser",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -684,6 +699,7 @@
       },
       "put": {
         "tags": ["User"],
+        "operationId": "PUT_UpdateUser",
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -735,6 +751,7 @@
     "/api/User/{id}": {
       "get": {
         "tags": ["User"],
+        "operationId": "GET_GetUser",
         "parameters": [
           {
             "name": "id",

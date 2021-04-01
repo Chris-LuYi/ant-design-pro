@@ -1,10 +1,12 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
+import { sleep } from '@medisys/utils';
 
 /** 获取当前的用户 GET /api/currentUser */
 export async function currentUser(options?: { [key: string]: any }) {
-  return request<API.CurrentUser>('http://localhost:8500/api/currentUser', {
+  // await sleep(50000);
+  return request<API.Response<API.CurrentUser>>('/api/user/current', {
     method: 'GET',
     ...(options || {}),
   });
@@ -12,21 +14,22 @@ export async function currentUser(options?: { [key: string]: any }) {
 
 /** 登录接口 POST /api/login/outLogin */
 export async function outLogin(options?: { [key: string]: any }) {
-  return request<Record<string, any>>('http://localhost:8500/api/login/outLogin', {
-    method: 'POST',
-    ...(options || {}),
-  });
+  localStorage.clear();
+  // return request<Record<string, any>>('http://localhost:8500/api/login/outLogin', {
+  //   method: 'POST',
+  //   ...(options || {}),
+  // });
 }
 
 /** 登录接口 POST /api/login/account */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<API.LoginResult>('http://localhost:8500/api/login/account', {
+  return request<API.LoginResult>('/connect/token', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     data: body,
-    ...(options || {}),
+    requestType: 'form',
+    ...(options || {
+      skipErrorHandler: true,
+    }),
   });
 }
 

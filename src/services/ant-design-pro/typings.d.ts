@@ -2,31 +2,21 @@
 /* eslint-disable */
 
 declare namespace API {
-  type CurrentUser = {
-    name?: string;
-    avatar?: string;
-    userid?: string;
-    email?: string;
-    signature?: string;
-    title?: string;
-    group?: string;
-    tags?: { key?: string; label?: string }[];
-    notifyCount?: number;
-    unreadCount?: number;
-    country?: string;
-    access?: string;
-    geographic?: {
-      province?: { label?: string; key?: string };
-      city?: { label?: string; key?: string };
-    };
-    address?: string;
-    phone?: string;
+  type Response<T> = {
+    data: T;
+    detailsErrorMessage?: string;
+    message?: string;
+    requestId?: string;
+    status?: number;
   };
 
+  type CurrentUser = API.UserInfo;
+
   type LoginResult = {
-    status?: string;
-    type?: string;
-    currentAuthority?: string;
+    access_token?: string;
+    expires_in?: number;
+    refresh_token?: string;
+    token_type: 'Bearer';
   };
 
   type PageParams = {
@@ -65,7 +55,10 @@ declare namespace API {
     username?: string;
     password?: string;
     autoLogin?: boolean;
-    type?: string;
+    grant_type: 'password' | undefined;
+    client_id: 'WMSWebApp' | undefined;
+    client_secret: '7@XOAGn_(5' | undefined;
+    scope: 'offline_access' | undefined;
   };
 
   type ErrorResponse = {

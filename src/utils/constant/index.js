@@ -14,3 +14,7 @@ export default {
   ACCESS_RIGHTS,
   USER_TYPE,
 };
+
+export const KEYS = {
+  TOKEN: '_T',
+};

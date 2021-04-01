@@ -6,7 +6,6 @@ import { stringify } from 'querystring';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
 import { outLogin } from '@/services/ant-design-pro/api';
-import { GETGetListing } from '@/services/banchoon/CTPort';
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -16,7 +15,6 @@ export type GlobalHeaderRightProps = {
  * 退出登录，并且将当前的 url 保存
  */
 const loginOut = async () => {
-  await GETGetListing({});
   await outLogin();
   const { query = {}, pathname } = history.location;
   const { redirect } = query;
@@ -33,7 +31,6 @@ const loginOut = async () => {
 
 const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   const { initialState, setInitialState } = useModel('@@initialState');
-
   const onMenuClick = useCallback(
     (event: {
       key: React.Key;
@@ -70,7 +67,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 
   const { currentUser } = initialState;
 
-  if (!currentUser || !currentUser.name) {
+  if (!currentUser || !currentUser.user) {
     return loading;
   }
 
@@ -92,15 +89,23 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 
       <Menu.Item key="logout">
         <LogoutOutlined />
-        退出登录
+        Logout
       </Menu.Item>
     </Menu>
   );
   return (
     <HeaderDropdown overlay={menuHeaderDropdown}>
       <span className={`${styles.action} ${styles.account}`}>
-        <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
-        <span className={`${styles.name} anticon`}>{currentUser.name}</span>
+        <Avatar
+          size="small"
+          className={styles.avatar}
+          src={
+            currentUser.user.avatar ||
+            'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
+          }
+          alt="avatar"
+        />
+        <span className={`${styles.name} anticon`}>{currentUser.user.name}</span>
       </span>
     </HeaderDropdown>
   );

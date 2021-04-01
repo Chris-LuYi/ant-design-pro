@@ -58,6 +58,7 @@
     "@umijs/openapi": "1.1.12",
     "@umijs/plugin-openapi": "^1.2.0",
     "@umijs/route-utils": "^1.0.33",
+    "@medisys/component": "^0.1.132",
     "antd": "^4.12.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",

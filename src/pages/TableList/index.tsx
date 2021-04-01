@@ -237,6 +237,10 @@ const TableList: React.FC = () => {
           </Button>,
         ]}
         request={rule}
+        // postData={(data) => {
+        //   console.log(data);
+        //   // return [];
+        // }}
         columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => {
